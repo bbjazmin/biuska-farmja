@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biuska farmja</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="jatek-kontener">
+    <header>
+        <h2>🌾 Biuska farmja</h2>
+        <div class="statistikak">
+            <div class="stat-elem">🪙 <span id="arany-kijelzo">100</span> Arany</div>
+            <div class="stat-elem">⭐ <span id="xp-kijelzo">0</span> XP</div>
+            <div class="stat-elem">🕐 <span id="ido-kijelzo">08:00</span></div>
+        </div>
+    </header>
+
+    <nav>
+        <button class="nav-gomb active" onclick="nezetValtas('foldek')">🧑‍🌾 Földek</button>
+        <button class="nav-gomb" onclick="nezetValtas('allatok')">🐔 Állatok</button>
+        <button class="nav-gomb" onclick="nezetValtas('raktar')">📦 Raktár</button>
+        <button class="nav-gomb" onclick="nezetValtas('bolt')">🛒 Bolt</button>
+    </nav>
+
+    <!-- 1. FÖLDEK NÉZET (CANVAS) -->
+    <div id="nezet-foldek" class="nezet active">
+        <h3>Földparcellák (Kattints a műveléshez!)</h3>
+        <canvas id="farm-vaszon" width="600" height="350"></canvas>
+    </div>
+
+    <!-- 2. ÁLLATOK NÉZET -->
+    <div id="nezet-allatok" class="nezet">
+        <h3>Karámok</h3>
+        <div class="racs-kontener" id="allat-lista"></div>
+    </div>
+
+    <!-- 3. RAKTÁR NÉZET -->
+    <div id="nezet-raktar" class="nezet">
+        <h3>Raktáram</h3>
+        <div class="racs-kontener" id="raktar-lista"></div>
+    </div>
+
+    <!-- 4. BOLT NÉZET -->
+    <div id="nezet-bolt" class="nezet">
+        <h3>Bolt & Vásárlás</h3>
+        <div class="racs-kontener" id="bolt-lista"></div>
+    </div>
+</div>
+
+<!-- Vetőmag választó ablak -->
+<div id="vetomag-ablak">
+    <div class="ablak-tartalom">
+        <h3>Válassz vetőmagot!</h3>
+        <div id="vetomag-opciok"></div>
+        <button class="akcio-gomb" style="background:#7f8c8d;" onclick="ablakBezaras()">Mégse</button>
+    </div>
+</div>
+
+<footer>
+    <p>Készítette: Balogh Bianka Jázmin</p>
+    <p>© 2026 Balogh Bianka Jázmin</p>
+    <p>(❁´◡`❁)</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,278 @@
+/* style.css - Sötét téma, lekerekítések és farmos háttérkép */
+
+:root {
+    --fokartya-hatter: rgba(20, 25, 30, 0.85);
+    --kartya-hatter: rgba(35, 45, 55, 0.75);
+    --kartya-szegely: rgba(255, 255, 255, 0.12);
+    --szoveg-szin: #e2e8f0;
+    --gomb-alap: #22c55e;
+    --gomb-hover: #16a34a;
+    --akcio-gomb: #f97316;
+    --akcio-hover: #ea580c;
+}
+
+/* Sötét módos nappal / éjszaka szűrők a háttérképhez */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Kiváló minőségű, sötétített farmos háttérkép */
+    background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), 
+                url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--szoveg-szin);
+    user-select: none;
+    min-height: 100vh;
+    transition: filter 1.5s ease;
+}
+
+body.naplemente {
+    filter: sepia(0.4) hue-rotate(-30deg) brightness(0.9);
+}
+
+body.ejszaka {
+    filter: brightness(0.6) hue-rotate(180deg);
+}
+
+/* Fő játékkonténer - Üveghatás és erősen lekerekített sarkok */
+#jatek-kontener {
+    max-width: 950px;
+    margin: 30px auto;
+    background: var(--fokartya-hatter);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 24px;
+    border: 1px solid var(--kartya-szegely);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+/* Fejléc és Statisztikák */
+header {
+    background: rgba(15, 23, 42, 0.6);
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--kartya-szegely);
+}
+
+header h2 {
+    margin: 0;
+    font-size: 1.6rem;
+    letter-spacing: 0.5px;
+}
+
+.statistikak {
+    display: flex;
+    gap: 15px;
+    font-weight: 600;
+}
+
+.stat-elem {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 8px 16px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+}
+
+/* Navigációs fülváltó */
+nav {
+    display: flex;
+    background: rgba(10, 15, 20, 0.5);
+    padding: 6px;
+    gap: 6px;
+}
+
+nav button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background: transparent;
+    color: #94a3b8;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border-radius: 14px;
+    transition: all 0.3s ease;
+}
+
+nav button:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+nav button.active {
+    background: var(--gomb-alap);
+    color: white;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+/* Nézetek területe */
+.nezet {
+    display: none;
+    padding: 25px;
+    min-height: 420px;
+}
+
+.nezet.active {
+    display: block;
+}
+
+.nezet h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #f1f5f9;
+    font-weight: 500;
+}
+
+/* Canvas a Földekhez (lekerekítve) */
+#farm-vaszon {
+    background: #2d1e18;
+    border-radius: 20px;
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Kártyák és Rács elrendezés */
+.racs-kontener {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 18px;
+}
+
+.kartya {
+    background: var(--kartya-hatter);
+    border: 1px solid var(--kartya-szegely);
+    border-radius: 18px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kartya:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.35);
+}
+
+.kartya h3, .kartya h4 { 
+    margin: 5px 0 10px 0; 
+    color: #f8fafc;
+}
+
+.kartya p {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+}
+
+/* Gombok stílusa */
+button.akcio-gomb {
+    background: var(--akcio-gomb);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 12px;
+    width: 100%;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(249, 115, 22, 0.25);
+}
+
+button.akcio-gomb:hover { 
+    background: var(--akcio-hover);
+    transform: scale(1.02);
+}
+
+button.akcio-gomb:disabled { 
+    background: #475569; 
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.6;
+    transform: none;
+}
+
+/* Vetőmag választó ablak (Modal) */
+#vetomag-ablak {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.ablak-tartalom {
+    background: #1e293b;
+    border: 1px solid var(--kartya-szegely);
+    padding: 25px;
+    border-radius: 20px;
+    width: 320px;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+}
+
+.ablak-tartalom h3 {
+    margin-top: 0;
+    color: #f8fafc;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin: 4px 0;
+}
+/* Mobilbarát (Reszponzív) kiegészítések */
+
+/* A Canvas alkalmazkodjon a kijelző szélességéhez */
+#farm-vaszon {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Kisebb kijelzőkre (mobiltelefonok) vonatkozó szabályok */
+@media (max-width: 600px) {
+    #jatek-kontener {
+        margin: 10px;
+        border-radius: 16px;
+    }
+
+    header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .statistikak {
+        flex-wrap: wrap;
+        justify-content: center;
+        font-size: 0.9rem;
+    }
+
+    nav {
+        flex-wrap: wrap;
+    }
+
+    nav button {
+        flex: 1 1 40%; /* Mobilon 2 gomb kerül egy sorba */
+        padding: 10px;
+        font-size: 0.85rem;
+    }
+
+    .nezet {
+        padding: 15px;
+    }
+}
